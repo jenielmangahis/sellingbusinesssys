@@ -1,0 +1,90 @@
+# DEPLOY files from codeship to staging server
+rsync -av -e "ssh -p 22" ~/clone/ nixstage@nixstage.com:/home/nixstage/public_html/
+# Modify the permission of all DIRECTORIES to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "find /home/nixstage/public_html/ -type d -exec chmod 755 {} \;"
+# Modify the permission of all FILES in kcfinder folder to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "find /home/nixstage/public_html/webroot/js/kcfinder -type f -exec chmod 755 {} \;"
+# Modify the permission of index.php in webroot to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "chmod 755 /home/nixstage/public_html/webroot/index.php"
+
+
+
+
+# DEPLOY files from codeship to staging server
+rsync -av -e "ssh -p 22" ~/clone/ nixstage@nixstage.com:/home/nixstage/public_html/homelux/
+# Modify the permission of all DIRECTORIES to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "find /home/nixstage/public_html/homelux/ -type d -exec chmod 755 {} \;"
+# Modify the permission of all FILES in kcfinder folder to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "find /home/nixstage/public_html/homelux/webroot/js/kcfinder -type f -exec chmod 755 {} \;"
+# Modify the permission of index.php in webroot to 755 - this will avoid 500 ISE
+ssh -p 22 nixstage@nixstage.com "chmod 755 /home/nixstage/public_html/homelux/webroot/index.php"
+
+
+
+
+ALTER TABLE `products` ADD `is_featured` TINYINT( 1 ) NOT NULL AFTER `meta_keywords` ;
+
+
+ALTER TABLE `customers` ADD `company_name` VARCHAR( 250 ) NOT NULL AFTER `second_name` ;
+
+
+
+                        <label class="lleft">Product Code</label>
+
+                        <div class="form-group">
+
+                            <div class="panel-group" id="accordion">
+
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                              <span class="glyphicon glyphicon-plus pull-right"></span>Product Code
+                                            </a>
+                                        </h4>
+                                    </div>  
+
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio" name="blankRadio" id="productCode" value="option1" aria-label="...">
+                                                    Single Gas Stove Series
+                                                  </label>
+                                                </div>
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio" name="blankRadio" id="productCode" value="option1" aria-label="...">
+                                                    Portable Gas Stove Series
+                                                  </label>
+                                                </div>
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio" name="blankRadio" id="productCode" value="option1" aria-label="...">
+                                                    Double Gas Stove Series
+                                                  </label>
+                                                </div>
+                                                <div class="radio">
+                                                  <label>
+                                                    <input type="radio" name="blankRadio" id="productCode" value="option1" aria-label="...">
+                                                    Low Pressure Gas Stove
+                                                  </label>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>                              
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+

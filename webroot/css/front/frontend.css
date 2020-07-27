@@ -1,0 +1,45 @@
+/*contact*/
+.contactform textarea,.contactform input{
+    width: 100%;
+    padding:1em;
+    border:1px solid #ccc;
+    margin-bottom: 1em;
+    border-radius: 0;
+    outline: none;
+    color:#337ab7;
+}
+/*end contact*/
+@media (max-width: 700px) {
+    .product-categories-container h3 {
+        font-size: 15px;
+    }
+}
+/*end products*/
+
+/*Scroll to top*/
+#top-link {
+    display: none;
+    position: fixed;
+    right: 20px;
+    background-color: #FF5722;
+    color: #fff;
+    height: 32px;
+    width: 32px;
+}
+
+#top-link:hover {
+    background-color: #FF5722;
+    -webkit-transition: all .3s ease-in-out;
+     -moz-transition: all .3s ease-in-out;
+      -ms-transition: all .3s ease-in-out;
+       -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+
+#top-link i {
+    font-size: 16px;    
+    line-height: 33px;
+    padding-left: 8px;    
+}
+/*End scroll to top*/

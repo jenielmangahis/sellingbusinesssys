@@ -1,0 +1,28 @@
+.table-responsive{
+  min-height: 100px;
+  padding-bottom: 20px;
+}
+.table-actions .dropdown-menu {
+    margin-right:-1000px;
+    background-color: #3C8DBC;
+    color:#ffffff;
+}
+
+.table-actions .dropdown-menu > li {
+    display: inline-block;
+    padding: 6px;
+}
+td.actions {
+    width: 110px;
+}
+.table-actions{
+  width:80px;
+}
+
+.tbl-field-id{
+  width:70px;
+}
+
+.dropdown-menu > li > a {
+    color: #ffffff;
+}
