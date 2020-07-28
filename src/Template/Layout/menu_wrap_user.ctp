@@ -47,12 +47,31 @@
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
             <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
-        <li id="pages_nav" title="Pages" class="<?= $nav_selected["pages"] ?>">
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Profile") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My Favorite") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Saved Search") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My Properties") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My package") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Submission") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+
+       <!--  <li id="pages_nav" title="Pages" class="<?= $nav_selected["pages"] ?>">
             <?= $this->Html->link('<i class="fa fa-globe"></i><span>' . __("Pages") . "</span>",["controller" => "pages", "action" => "index"],["escape" => false]) ?>
         </li>                      
         <li id="slides_nav" title="Slides" class="<?= $nav_selected["slides"] ?>">
             <?= $this->Html->link('<i class="fa fa-image"></i><span>' . __("Slides") . "</span>",["controller" => "slides", "action" => "index"],["escape" => false]) ?>
-        </li>        
+        </li>         -->
         <li id="system_settings_nav" title="System Settings" class="treeview <?= $nav_selected["system_settings"] ?>">
           <a href="#">
             <i class="fa fa-gear"></i> <span>System Settings</span>
