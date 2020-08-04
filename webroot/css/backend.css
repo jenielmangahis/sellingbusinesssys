@@ -664,6 +664,26 @@ td.actions {
 
 
 /*MY PROFILE CSS*/
+.content-header h1 { 
+    font-weight: bold; 
+    text-transform: uppercase;
+   }
+
+.portlet-body .box.box-primary {
+  border-top-color: #D73924;
+}
+
+h3.box-title {
+  font-weight: bold;
+  font-size: 24px !important;
+  text-transform: uppercase;
+}
+
+
+.box-body > strong {
+  font-size: 17px;
+  text-transform: uppercase;
+}
 
 
 #profile-box > a.btn-profile {
@@ -682,6 +702,51 @@ a.btn-profile:hover {
 }
 
 #profile-box > a.btn-profile i { margin-right: 5px; }
+
+
+/*SYSTEM SETTINGS-COMPANY CSS*/
+.header-title-2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 5px 0;
+  color: #fff;
+}
+
+
+.box-solid > .box-header > .box-tools {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.box-border {
+  border: solid 1px #222d32;
+  margin-bottom: 20px;
+}
+
+.box-dark > .box-header {
+  background: #222d32;
+  background-color: #222d32;
+}
+.box-solid > .box-header > .box-tools > a {
+  font-size: medium;
+}
+
+.box-tools .btn-box-tool { 
+  padding: 6px 12px; 
+  color: #fff;
+}
+.box-tools .btn-box-tool:hover {
+  color: #fff;
+}
+
+
+#dt-users-list tbody > tr > td {
+  display: -webkit-inline-box;
+  display: inline-block;
+  font-size: medium;
+}
+
 
 
 

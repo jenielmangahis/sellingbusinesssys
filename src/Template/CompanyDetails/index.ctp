@@ -16,11 +16,11 @@
     <!-- Main Row -->
     <div class="row">
         <section class="col-lg-12 ">
-            <div class="box box-primary box-solid">   
+            <div class="box-border box-dark box-solid">   
                 <div class="box-header with-border">
-                    <?= __('Company Details') ?>
+                    <h2 class="header-title-2"><?= __('Company Details') ?></h2>
                     <div class="box-tools pull-right">
-                        <?= $this->Html->link('<i class="fa fa-pencil"></i> Edit', ['action' => 'edit', $companyDetails->id],['class' => 'btn btn-box-tool', 'escape' => false]) ?>
+                        <?= $this->Html->link('<i class="fa fa-pencil"></i> Edit', ['action' => 'edit', $companyDetails->id],['class' => 'btn btn-success btn-box-tool', 'escape' => false]) ?>
                     </div>        
                 </div>             
                 <div class="box-body">
@@ -44,8 +44,10 @@
                 </div>
             </div>
            
-            <div class="box box-primary box-solid">                  
-                <div class="box-header with-border"><?= __('Location') ?></div>   
+            <div class="box-border box-dark box-solid">                  
+                <div class="box-header with-border">
+                    <h2 class="header-title-2"><?= __('Location') ?></h2>
+                </div>   
                 <div class="box-body">
                     <style>#map {width: 100%;height: 300px;}</style>
                     <div class="location-tab-map-pane" style="padding:10px;">
