@@ -48,30 +48,23 @@
             <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Profile") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-user"></i><span>' . __("Profile") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My Favorite") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-heart"></i><span>' . __("My Favorite") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Saved Search") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-search"></i><span>' . __("Saved Search") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["business"] ?>">
+            <?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("My Business") . "</span>",["controller" => "business", "action" => "index"],["escape" => false]) ?>
         </li> 
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My Properties") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
-        </li> 
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-            <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("My package") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-cubes"></i><span>' . __("My package") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
             <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Submission") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
         </li> 
-
-       <!--  <li id="pages_nav" title="Pages" class="<?= $nav_selected["pages"] ?>">
-            <?= $this->Html->link('<i class="fa fa-globe"></i><span>' . __("Pages") . "</span>",["controller" => "pages", "action" => "index"],["escape" => false]) ?>
-        </li>                      
-        <li id="slides_nav" title="Slides" class="<?= $nav_selected["slides"] ?>">
-            <?= $this->Html->link('<i class="fa fa-image"></i><span>' . __("Slides") . "</span>",["controller" => "slides", "action" => "index"],["escape" => false]) ?>
-        </li>         -->
         <li id="system_settings_nav" title="System Settings" class="treeview <?= $nav_selected["system_settings"] ?>">
           <a href="#">
             <i class="fa fa-gear"></i> <span>System Settings</span>
@@ -80,6 +73,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Business Types") . "</span>",["controller" => "business_types", "action" => "index"],["escape" => false]) ?></li>
+            <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Business Categories") . "</span>",["controller" => "business_categories", "action" => "index"],["escape" => false]) ?></li>
+            <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Sales Authorities") . "</span>",["controller" => "sales_authorities", "action" => "index"],["escape" => false]) ?></li>
           	<li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Company") . "</span>",["controller" => "company_details", "action" => "index"],["escape" => false]) ?></li>
           	<li><?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => "users", "action" => "index"],["escape" => false]) ?></li>            
             <li><?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Groups") . "</span>",["controller" => "groups", "action" => "index"],["escape" => false]) ?></li>
