@@ -23,7 +23,7 @@
         <div class="col-md-2">
             <!-- Profile Image -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
+            <div id="profile-box" class="box-body box-profile">
               <?php 
                 if( $user->photo != '' ){
                     $user_photo = $this->Url->build("/webroot/upload/users/" . $user->id . "/" . $user->photo);            

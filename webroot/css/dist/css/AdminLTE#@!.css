@@ -687,9 +687,6 @@ a:focus {
   top: 50%;
   margin-top: -7px;
 }
-
-
-
 /*
  * Component: Control sidebar. By default, this is the right sidebar.
  */
@@ -4929,5 +4926,3 @@ table.text-center th {
 .form-horizontal .btn{
   margin:1px;
 }
-
-

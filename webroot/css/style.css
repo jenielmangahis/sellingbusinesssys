@@ -302,6 +302,19 @@ form.form-inline *, form.form-inline .btn, form.form-inline .form-control { font
 .ui-widget-content {z-index: 1051 !important; }
 .form-group .form-label { font-weight: 400; }
 
+
+/*ADDITIONAL CUSTOM STYLE*/
+
+#skin-custom .sidebar-menu > li:hover > a, #skin-custom .sidebar-menu > li.active > a {
+	color:#fff ;
+	background:#00a65a;
+	border-left-color: #fff;
+
+}
+
+
+
+
 /*MD*/
 @media only screen and (min-width: 992px) {}
 
