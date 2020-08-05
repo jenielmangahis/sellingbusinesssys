@@ -48,4 +48,4 @@
     </script>
 </head>
 <body class="hold-transition sidebar-mini">
-    <div id ="skin-custom" class="wrapper skin-red">
+    <div id ="skin-custom" class="wrapper skin-blue">
