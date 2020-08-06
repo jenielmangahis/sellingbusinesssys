@@ -17,23 +17,21 @@
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
-                    <table id="dt-users-list" class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th class="actions"><?= __('Actions') ?></th>
-                                                <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('user_id') ?></th>
-                                                <th><?= $this->Paginator->sort('taking') ?></th>
-                                                <th><?= $this->Paginator->sort('weekly_turnover') ?></th>
-                                                <th><?= $this->Paginator->sort('average_weekly_takings') ?></th>
-                                                <th><?= $this->Paginator->sort('annual_return') ?></th>
-                                                <th><?= $this->Paginator->sort('cover_photo') ?></th>
-                                                
+                                <th><?= $this->Paginator->sort('id') ?></th>
+                                <th><?= $this->Paginator->sort('user_id', __("User")) ?></th>
+                                <th><?= $this->Paginator->sort('taking') ?></th>
+                                <th><?= $this->Paginator->sort('weekly_turnover') ?></th>
+                                <th><?= $this->Paginator->sort('average_weekly_takings') ?></th>
+                                <th><?= $this->Paginator->sort('annual_return') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($business as $busines): ?>
-                                                        <tr>
+                            <tr>
                                 <td class="table-actions">
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="drpdwn" data-toggle="dropdown" aria-expanded="true">
@@ -68,14 +66,12 @@
                                         </div>                              
                                     </div>                       
                                 </td>
-                                                <td><?= $this->Number->format($busines->id) ?></td>
-                                                <td <?php if( $isKey == 1 ? 'class="tbl-field-id"' : '' ) ?>><?= $busines->has('user') ? $this->Html->link($busines->user->full_name, ['controller' => 'Users', 'action' => 'view', $busines->user->id]) : '' ?></td>
-                                                <td><?= h($busines->taking) ?></td>
-                                                <td><?= h($busines->weekly_turnover) ?></td>
-                                                <td><?= h($busines->average_weekly_takings) ?></td>
-                                                <td><?= h($busines->annual_return) ?></td>
-                                                <td><?= h($busines->cover_photo) ?></td>
-                  
+                                <td><?= $this->Number->format($busines->id) ?></td>
+                                <td><?= $busines->user->full_name ?></td>
+                                <td><?= h($busines->taking) ?></td>
+                                <td><?= h($busines->weekly_turnover) ?></td>
+                                <td><?= h($busines->average_weekly_takings) ?></td>
+                                <td><?= h($busines->annual_return) ?></td>
                             </tr>
                             <?php ;endforeach; ?>
                         </tbody>

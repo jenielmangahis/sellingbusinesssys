@@ -70,8 +70,10 @@ class BusinessController extends AppController
     {
         $busines = $this->Business->newEntity();
         if ($this->request->is('post')) {
-            $busines = $this->Business->patchEntity($busines, $this->request->data);
+            $newBusines = $this->Business->patchEntity($busines, $this->request->data);
             if ($this->Business->save($busines)) {
+                $newBusines->cover_photo = $this->Business->uploadCoverPhoto($newBusines, $this->request->data['cover_photo']);
+
                 $this->Flash->success(__('The busines has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
@@ -104,6 +106,9 @@ class BusinessController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            if( $this->request->data['upload_cover_photo']['name'] != '' ){
+                $this->request->data['cover_photo'] = $this->Business->uploadCoverPhoto($busines, $this->request->data['upload_cover_photo']);
+            }
             $busines = $this->Business->patchEntity($busines, $this->request->data);
             if ($this->Business->save($busines)) {
                 $this->Flash->success(__('The busines has been saved.'));

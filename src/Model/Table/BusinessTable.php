@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Filesystem\Folder;
 
 /**
  * Business Model
@@ -24,6 +25,7 @@ use Cake\Validation\Validator;
  */
 class BusinessTable extends Table
 {
+    const FOLDER_NAME = 'upload/business_cover_photo/';
 
     /**
      * Initialize method
@@ -213,5 +215,29 @@ class BusinessTable extends Table
         $rules->add($rules->existsIn(['business_category_id'], 'BusinessCategories'));
 
         return $rules;
+    }
+
+    public function getAttachmentFolderLocation()
+    {
+        $path = WWW_ROOT . self::FOLDER_NAME; 
+        return $path;
+    }
+
+    public function getFolderName()
+    {
+        return self::FOLDER_NAME;
+    }
+
+    public function uploadCoverPhoto( $obj, $file, $is_completed = false ) 
+    {
+        //Store photo
+        $ext  = substr(strtolower(strrchr($file['name'], '.')), 1);
+        $setNewFileName = 'cover_photo_' . time() . "_" . rand(000000, 999999) . $obj->id . '.' . $ext;
+
+        //Create folder
+        $locationPath   = self::getAttachmentFolderLocation() . $obj->id;        
+        $dir = new Folder($locationPath, true, 0755);
+        move_uploaded_file($file['tmp_name'], $locationPath . "/" . $setNewFileName);
+        return $setNewFileName;
     }
 }

@@ -37,7 +37,15 @@ class NavigationSelectorHelper extends Helper
             "users"   => "",  
             "slides" => "",          
             "system_settings" => "",
-            "business" => ""
+            "business" => "",
+            "my_profile" => "",
+            "my_favorite" => "",
+            "my_saved_search" => "",
+            "my_properties" => "",
+            "my_package" => "",
+            "my_submission" => "",
+            "my_business" => ""
+
         );
         $navigation[$selected] = "active";
 
