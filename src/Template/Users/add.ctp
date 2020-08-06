@@ -24,8 +24,12 @@
                 </div>
                 <div class="box-body">
                     <?= $this->Form->create($user,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-                    <fieldset>        
-                        <h3 class="form-caption">User Information</h3>
+                    <fieldset> 
+                        <div class="box-dark box-spacer">
+                            <div class="box-header">      
+                                <h3 class="header-title-3">User Information</h3>
+                            </div>
+                        </div>
                         <?php
                                     echo "
                                     <div class='form-group'>
@@ -62,7 +66,11 @@
                                         echo $this->Form->select('is_active',["1" => "Yes", "0" => "No"],['class' => 'form-control', 'id' => 'is_active', 'label' => false]);                                        
                                     echo " </div></div>";
                         ?>
-                        <h3 class="form-caption">Login Details</h3>          
+                       <div class="box-dark box-spacer">
+                            <div class="box-header">      
+                                <h3 class="header-title-3">Login Details</h3>
+                            </div>
+                        </div>          
                         <?php
                                     echo "
                                     <div class='form-group'>

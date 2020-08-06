@@ -721,7 +721,7 @@ a.btn-profile:hover {
 
 
 /*SYSTEM SETTINGS-COMPANY CSS*/
-.header-title-2 {
+.header-title-2, .header-title-3 {
   text-transform: uppercase;
   font-weight: 600;
   margin: 5px 0;
@@ -732,7 +732,7 @@ a.btn-profile:hover {
 .box-solid > .box-header > .box-tools {
     position: absolute;
     right: 10px;
-    top: 15px;
+    top: 10px;
 }
 
 .box-border {
@@ -740,9 +740,13 @@ a.btn-profile:hover {
   margin-bottom: 20px;
 }
 
+.box-spacer {
+  margin-bottom: 20px;
+}
+
 .box-dark > .box-header {
-  background: #222d32;
-  background-color: #222d32;
+  background: #1d293e;
+  background-color: #1d293e;
 }
 .box-solid > .box-header > .box-tools > a {
   font-size: medium;
@@ -765,6 +769,17 @@ a.btn-profile:hover {
 
 
 
+/*ADD USER CSS*/
+.box-dark > .form-caption {
+  background-color:none;
+}
+
+
+
+/*GROUPS CSS*/
+.dropdown .dropdown-menu li a {
+  color: #fff;
+}
 
 
 

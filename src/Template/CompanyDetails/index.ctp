@@ -18,9 +18,9 @@
         <section class="col-lg-12 ">
             <div class="box-border box-dark box-solid">   
                 <div class="box-header with-border">
-                    <h2 class="header-title-2"><?= __('Company Details') ?></h2>
+                    <h3 class="header-title-3"><?= __('Company Details') ?></h3>
                     <div class="box-tools pull-right">
-                        <?= $this->Html->link('<i class="fa fa-pencil"></i> Edit', ['action' => 'edit', $companyDetails->id],['class' => 'btn btn-success btn-box-tool', 'escape' => false]) ?>
+                        <?= $this->Html->link('<i class="fa fa-pencil"></i> Edit', ['action' => 'edit', $companyDetails->id],['class' => 'btn btn-danger btn-box-tool', 'escape' => false]) ?>
                     </div>        
                 </div>             
                 <div class="box-body">
@@ -46,7 +46,7 @@
            
             <div class="box-border box-dark box-solid">                  
                 <div class="box-header with-border">
-                    <h2 class="header-title-2"><?= __('Location') ?></h2>
+                    <h3 class="header-title-3"><?= __('Location') ?></h3>
                 </div>   
                 <div class="box-body">
                     <style>#map {width: 100%;height: 300px;}</style>
