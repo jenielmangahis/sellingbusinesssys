@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1><?= __('Add Busines') ?></h1>
+    <h1><?= __('Add Business') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
         <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['action' => 'index'],['escape' => false]) ?></li>

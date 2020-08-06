@@ -784,5 +784,16 @@ a.btn-profile:hover {
 
 
 
+/*ADD BUSSINESS CSS*/
+#business_description {
+  width: 100%;
+}
+
+.form-group .input .form-control {
+  border-radius: 4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+}
+
 
 
