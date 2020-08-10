@@ -31,14 +31,12 @@ class UsersController extends AppController
         $user_data = $session->read('User.data');  
         
         if( isset($user_data) ){
-            if( $user_data->group_id == 1 ){ //Company
+            if( $user_data->group_id == 1 ){ //Admin
                 $this->Auth->allow();
             }else{
-                $this->Auth->allow(['request_forgot_password', 'front_login', 'loggedin', 'ajax_login', 'activate_account', 'fb_login']);    
+                $this->Auth->allow(['user_dashboard', 'front_login', 'loggedin', 'ajax_login', 'activate_account', 'fb_login']);    
             } 
-        }else{
-            $this->Auth->allow(['request_forgot_password', 'front_login', 'loggedin', 'ajax_login', 'activate_account', 'google_login', 'fb_login', 'cron_remove_unverified_accounts', 'front_forgot_password', 'front_reset_password']);
-        }  
+        } 
     }
 
     /**
@@ -211,25 +209,8 @@ class UsersController extends AppController
 
                 if( $u->group_id == 1 ){
                     return $this->redirect($this->Auth->redirectUrl());
-                }else{
-                    if( $u->group_id == 4 ){
-                        $this->Owners = TableRegistry::get('Owners');
-                        $owner = $this->Owners->find()
-                            ->where(['Owners.user_id' => $u->id])
-                            ->first()
-                        ;
-                        $session->write('Owner.data', $owner);        
-                        return $this->redirect(['controller' => 'owner', 'action' => 'dashboard']);
-                    }else{
-                        $this->Tenants = TableRegistry::get('Tenants');
-                        $tenant = $this->Tenants->find()
-                            ->where(['Tenants.user_id' => $u->id])
-                            ->first()
-                        ;
-                        $session->write('Tenant.data', $tenant);        
-                        return $this->redirect(['controller' => 'tenant', 'action' => 'dashboard']);
-                    }
-                    
+                }else{     
+                    return $this->redirect(['controller' => 'users', 'action' => 'user_dashboard']);
                 }             
                 
             }
@@ -898,5 +879,19 @@ class UsersController extends AppController
         }
 
         $this->set('page_title', 'Forgot Password');
+    }
+
+    /**
+     * User method
+     * ID : CA-23
+     * @return void
+     */
+    public function user_dashboard()
+    {    
+        $nav_selected = ["dashboard"];
+        $this->set([
+            'page_title' => 'Dashboard',
+            'nav_selected' => $nav_selected
+        ]);
     }
 }
