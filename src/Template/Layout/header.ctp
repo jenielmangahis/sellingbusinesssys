@@ -9,8 +9,7 @@
     <title><?= COMPANY_NAME ?></title>
  
     <?php
-            echo $this->Html->meta('icon');
-            echo $this->Html->css('fontawesome/css/font-awesome.min.css');
+            //echo $this->Html->meta('icon');
             echo $this->Html->css('backend.css');
             echo $this->Html->css('bootstrap/css/bootstrap.min.css');  
             echo $this->Html->css('dist/css/AdminLTE.css');   
@@ -18,7 +17,7 @@
             echo $this->Html->css('plugins/datepicker/datepicker3.css');                        
             echo $this->Html->css('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css');                        
             echo $this->Html->css('jquery-ui-1.11.4/jquery-ui.css'); 
-            //echo $this->Html->css('font-awesome.min.css'); 
+            echo $this->Html->css('font-awesome.css'); 
             echo $this->Html->css('ionicons.min.css'); 
             //echo $this->Html->css('custom.css');
             echo $this->Html->css('dist/css/skins/_all-skins.min.css'); 

@@ -28,7 +28,7 @@
 
 <script>
   var base_url = "<?= $base_url; ?>";
-  $.widget.bridge('uibutton', $.ui.button);
+  //$.widget.bridge('uibutton', $.ui.button);
 </script>
 
 <?php   

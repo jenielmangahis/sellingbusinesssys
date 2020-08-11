@@ -17,7 +17,7 @@
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
-                    <table id="dt-users-list" class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th class="actions"><?= __('Actions') ?></th>
