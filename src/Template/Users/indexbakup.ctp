@@ -59,10 +59,8 @@ div.box-body{
                     </div>
                     <div class="box-tools" style="top:9px;margin-left:3px;right:3px;"><button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button></div>
                 </div>             
-                <div class="box-body">
-
-
-                    <table class="table table-hover table-striped">
+                <div class="box-body">                    
+                    <table id="dt-users-list" class="table table-hover table-striped">
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="actions"></th>
