@@ -45,6 +45,7 @@
     <script>
         var BASE_URL = '<?= $this->Url->build("/") ?>';
     </script>
+    <script src="https://use.fontawesome.com/d2a537a12d.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div id ="skin-custom" class="wrapper skin-blue">
