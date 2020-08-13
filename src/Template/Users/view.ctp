@@ -10,10 +10,6 @@
                 <td><?= h($user->firstname) ?></td>
             </tr>  
             <tr>
-                <th width="140"><?= __('Middlename') ?></th>
-                <td><?= h($user->middlename) ?></td>
-            </tr>  
-            <tr>
                 <th width="140"><?= __('Lastname') ?></th>
                 <td><?= h($user->lastname) ?></td>
             </tr>

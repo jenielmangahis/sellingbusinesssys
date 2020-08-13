@@ -18,7 +18,7 @@ class UsersController extends AppController
 
     /**
      * initialize method
-     *  ID : CA-01
+     *  ID : USR-01
      * 
      */
     public function initialize()
@@ -26,33 +26,32 @@ class UsersController extends AppController
         parent::initialize();
         $nav_selected = ["system_settings"];
         $this->set('nav_selected', $nav_selected);      
-
-        $session = $this->request->session();    
-        $user_data = $session->read('User.data');  
-        
-        if( isset($user_data) ){
-            if( $user_data->group_id == 1 ){ //Admin
-                $this->Auth->allow();
-            }else{
-                $this->Auth->allow(['user_dashboard', 'front_login', 'loggedin', 'ajax_login', 'activate_account', 'fb_login']);    
-            } 
-        } 
     }
 
     /**
      * beforeFilter method
-     *  ID : CA-02
+     *  ID : USR-02
      * 
      */
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['logout', 'login']);
+
+        $session = $this->request->session();    
+        $this->user_data = $session->read('User.data');  
+        
+        if( isset($this->user_data) ){
+            if( $this->user_data->group_id == 1 ){ //Admin             
+                $this->Auth->allow();
+            }else{
+                $this->Auth->allow(['logout', 'login','loggedin','user_dashboard']);
+            }
+        }
     }
 
     /**
      * Index method
-     * ID : CA-03
+     * ID : USR-03
      * @return void
      */
     public function index()
@@ -78,7 +77,7 @@ class UsersController extends AppController
 
     /**
      * Dashboard method
-     * ID : CA-04
+     * ID : USR-04
      * @return void
      */
     public function dashboard()
@@ -92,7 +91,7 @@ class UsersController extends AppController
 
     /**
      * View method
-     * ID : CA-05
+     * ID : USR-05
      * @param string|null $id User id.
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
@@ -108,7 +107,7 @@ class UsersController extends AppController
 
     /**
      * Add method
-     * ID : CA-06
+     * ID : USR-06
      * @return void Redirects on successful add, renders view otherwise.
      */
     public function add()
@@ -130,7 +129,7 @@ class UsersController extends AppController
 
     /**
      * Edit method
-     * ID : CA-07
+     * ID : USR-07
      * @param string|null $id User id.
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
@@ -162,7 +161,7 @@ class UsersController extends AppController
 
     /**
      * delete method
-     * ID : CA-08
+     * ID : USR-08
      * @return void
      */
     public function delete($id = null)
@@ -180,7 +179,7 @@ class UsersController extends AppController
 
     /**
      * Login
-     * ID : CA-09
+     * ID : USR-09
      * lagin module then redirect to dashboard
      */
     public function login()
@@ -221,7 +220,7 @@ class UsersController extends AppController
 
     /**
      * logout
-     * ID : CA-10
+     * ID : USR-10
      * logout user and go back to login page
      */
     public function logout()
@@ -233,7 +232,7 @@ class UsersController extends AppController
 
     /**
      * Ajax Forgot Password
-     * ID : CA-11
+     * ID : USR-11
      * @return json data
      */
     public function request_forgot_password()
@@ -289,7 +288,7 @@ class UsersController extends AppController
 
     /**
      * Change Password method     
-     * ID : CA-12
+     * ID : USR-12
      * @param string|null $id User id.
      * @param string|null $redirect 1 = owners, 2 = tenants, 0 = users.
      * @return void Redirects on successful add, renders view otherwise.
@@ -343,7 +342,7 @@ class UsersController extends AppController
 
     /**
      * Suspend account method
-     *  ID : CA-13
+     *  ID : USR-13
      *
      * @param string|null $id User id.
      * @param string|null $redirect Owner / Tenant.
@@ -368,7 +367,7 @@ class UsersController extends AppController
 
     /**
      * Activate account method
-     *  ID : CA-14
+     *  ID : USR-14
      *
      * @param string|null $id User id.
      * @param string|null $redirect Owner / Tenant.
@@ -394,128 +393,9 @@ class UsersController extends AppController
         }      
     }
 
-    /**
-     * Frontend : Login
-     * ID : CA-15
-     * lagin module then redirect to dashboard
-     */
-    public function front_login()
-    {
-        // Change layout
-        $this->viewBuilder()->layout("template_login");    
-        
-        //if already logged-in, redirect
-        if($this->Auth->user()){
-            $this->redirect(array('action' => 'index'));      
-        }
-
-        if( isset($this->request->query['er']) ){
-            $this->Flash->error(__('Account already expired'));
-        }
-
-        if ($this->request->is('post')) {           
-            $user = $this->Auth->identify();             
-            if ($user) {                       
-                $this->Auth->setUser($user);
-                
-                $u = $this->Users->find()
-                    ->where(['Users.id' => $this->Auth->user('id')])
-                    ->first()
-                ;              
-                $session  = $this->request->session();  
-                $session->write('User.data', $u);                                               
-                $_SESSION['KCEDITOR']['disabled'] = false;
-                $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
-
-                if( $u->group_id == 1 ){
-                    return $this->redirect($this->Auth->redirectUrl());
-                }else{
-                    if( $u->group_id == 4 ){
-                        $this->Owners = TableRegistry::get('Owners');
-                        $owner = $this->Owners->find()
-                            ->where(['Owners.user_id' => $u->id])
-                            ->first()
-                        ;
-                        $session->write('Owner.data', $owner);   
-
-                        $this->Flash->success(__("Welcome back " . $u->firstname));     
-                        return $this->redirect(['controller' => 'owner', 'action' => 'dashboard']);
-                    }else{
-                        $this->Tenants = TableRegistry::get('Tenants');
-                        $tenant = $this->Tenants->find()
-                            ->where(['Tenants.user_id' => $u->id])
-                            ->first()
-                        ;
-                        $session->write('Tenant.data', $tenant);   
-
-                        $this->Flash->success(__("Welcome back " . $u->firstname));     
-                        return $this->redirect(['controller' => 'tenant', 'action' => 'dashboard']);
-                    }
-                    
-                }             
-                
-            }
-            $this->Flash->error(__('Invalid username or password, try again'));
-        }
-        $this->set('page_title', 'User Login');
-    }
-
-    /**
-     * Frontend : Ajax Login
-     * ID : CA-16
-     * lagin module then redirect to dashboard
-     */
-    public function ajax_login()
-    {
-        $json_data['message']    = "<div class=\"alert alert-danger\" role=\"alert\">Invalid username / password</div>";
-        $json_data['is_success'] = false;
-
-        $user = $this->Auth->identify();             
-        if ($user) {                       
-            $this->Auth->setUser($user);
-            
-            $u = $this->Users->find()
-                ->where(['Users.id' => $this->Auth->user('id')])
-                ->first()
-            ;
-
-            if( $u->is_active == 1 ){
-                $session  = $this->request->session();  
-                $session->write('User.data', $u);                                               
-                $_SESSION['KCEDITOR']['disabled'] = false;
-                $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
-
-                if( $u->group_id == 4 ){
-                    $this->Owners = TableRegistry::get('Owners');
-                    $owner = $this->Owners->find()
-                        ->where(['Owners.user_id' => $u->id])
-                        ->first()
-                    ;
-                    $session->write('Owner.data', $owner);                            
-                }else{
-                    $this->Tenants = TableRegistry::get('Tenants');
-                    $tenant = $this->Tenants->find()
-                        ->where(['Tenants.user_id' => $u->id])
-                        ->first()
-                    ;
-                    $session->write('Tenant.data', $tenant);                            
-                }
-
-                $json_data['is_success'] = true;
-                $json_data['message']    = "<div class=\"alert alert-success\" role=\"alert\">Redirecting to dashboard</div>"; 
-            }else{
-                $json_data['message']    = "<div class=\"alert alert-danger\" role=\"alert\">Account inactive</div>";
-            }
-        }
-
-        $this->viewBuilder()->layout('');        
-        echo json_encode($json_data);
-        exit;        
-    }
-
      /**
      * User loggedin method - redirection upon login
-     * ID : CA-17
+     * ID : USR-15
      * lagin module then redirect to dashboard
      */
     public function loggedin()
@@ -526,6 +406,8 @@ class UsersController extends AppController
         $user_data  = $session->read('User.data');              
         if( $group_id == 1 ){ //Admin
             return $this->redirect(['controller' => 'users', 'action' => 'dashboard']);  
+        }elseif( $group_id == 2 ){
+            return $this->redirect(['controller' => 'users', 'action' => 'user_dashboard']);  
         }else{
             return $this->redirect(['action' => 'logout']);  
         }
@@ -533,7 +415,7 @@ class UsersController extends AppController
 
      /**
      * Activate user account method
-     * ID : CA-18
+     * ID : USR-16
      * login module then redirect to dashboard
      */
     public function activate_account( $code = null )
@@ -590,300 +472,8 @@ class UsersController extends AppController
     }
 
     /**
-     * User Google Login
-     * ID : CA-19
-     *         
-     */
-    public function google_login()
-    {
-        $this->Users   = TableRegistry::get('Users');
-        $this->Owners  = TableRegistry::get('Owners');
-        $this->Tenants = TableRegistry::get('Tenants'); 
-
-        $json_data['is_success'] = false; 
-        $json_data['token']      = '';
-
-        if(!$this->Auth->user()){
-            if(isset($this->request->data['results'])){
-                $gData      = get_oauth2_token($this->request->data['results']);
-                $googleUser = $gData['user'];                
-
-                $data = $this->request->data; 
-                $user = $this->Users->find()
-                    ->contain(['Groups'])
-                    ->where(['Users.email' => $googleUser->email])
-                    ->first()
-                ;
-
-                if( !empty($user) ){  
-                    $this->Auth->setUser($user);                            
-                    $session  = $this->request->session();        
-                    $session->write('User.data', $user);   
-
-                    if( $user->group_id == 4 ){
-                        //Owner                
-                        $owner = $this->Owners->find()
-                          ->where(['Owners.user_id' => $user->id])
-                          ->first()
-                        ;
-
-                        $date = date("Y-m-d");
-                        $owner->account_expiration_date = $this->Owners->computeAccountExpirationDate($date);
-                        $this->Owners->save($owner);
-                        
-                        $session->write('Owner.data', $owner);   
-                    }else{
-                        //Tenant
-                        $tenant = $this->Tenants->find()
-                          ->where(['Tenants.user_id' => $user->id])
-                          ->first()
-                        ;
-
-                        $session->write('Tenant.data', $tenant);
-                    }
-                }else{
-                    $newFileName = time() . "_" . rand(000000, 999999);
-                    $newFileName = $newFileName . ".jpg";
-
-                    $user_data = [
-                        'email' => $googleUser->email,
-                        'username' => $googleUser->email,
-                        'password' => $this->Users->generateRandomPassword(),
-                        'group_id' => 5,
-                        'firstname' => $googleUser->given_name,
-                        'lastname' => $googleUser->family_name,
-                        'photo' => $newFileName
-                    ];
-                    
-                    $user = $this->Users->newEntity();
-                    $user = $this->Users->patchEntity($user,$user_data);
-                    if( $new_user = $this->Users->save($user) ){
-
-                        //Upload profile pic                        
-                        $directory_name = WWW_ROOT . '/upload/users/' . $new_user->id . "/";  
-                        if(!is_dir($directory_name)){                                           
-                            mkdir($directory_name, 0755, true);
-                        }   
-                        $googleImage     = $googleUser->picture;         
-                        $image = file_get_contents($googleImage); // sets $image to the contents of the url
-                        file_put_contents($directory_name . $newFileName, $image);
-
-                        $tenant_data = [
-                            'user_id' => $new_user->id
-                        ];
-                        
-                        $tenant = $this->Tenants->newEntity();
-                        $tenant = $this->Tenants->patchEntity($tenant, $tenant_data);
-                        $new_tenant = $this->Tenants->save($tenant);
-
-                        $this->Auth->setUser($user);                            
-                        $session  = $this->request->session();        
-                        $session->write('User.data', $new_user);  
-                        $session->write('Tenant.data', $new_tenant);
-                        
-                     }
-                }        
-                $json_data['token']      = $gData['access_token'];
-                $json_data['is_success'] = true;
-            }
-        }       
-        
-        $this->viewBuilder()->layout('');        
-        echo json_encode($json_data);
-        exit;
-    }
-
-    /**
-     * User FB Login
-     * ID : CA-20
-     *         
-     */
-    public function fb_login()
-    {
-        $this->Users = TableRegistry::get('Users');
-        $this->Owners  = TableRegistry::get('Owners');
-        $this->Tenants = TableRegistry::get('Tenants');
-
-        $json_data['is_success'] = false;
-        $session = $this->request->session();  
-
-        if(!$this->Auth->user()){
-            $data = $this->request->data; 
-            $user = $this->Users->find()
-                ->contain(['Groups'])  
-                ->where(['Users.email' => $data['email']])
-                ->first()
-            ;
-
-            if( !empty($user) ){
-                $this->Auth->setUser($user);                            
-                $session  = $this->request->session();        
-                $session->write('User.data', $user);   
-
-                if( $user->group_id == 4 ){
-                    //Owner                
-                    $owner = $this->Owners->find()
-                      ->where(['Owners.user_id' => $user->id])
-                      ->first()
-                    ;
-
-                    $date = date("Y-m-d");
-                    $owner->account_expiration_date = $this->Owners->computeAccountExpirationDate($date);
-                    $this->Owners->save($owner);
-                    
-                    $session->write('Owner.data', $owner);   
-                }else{
-                    //Tenant
-                    $tenant = $this->Tenants->find()
-                      ->where(['Tenants.user_id' => $user->id])
-                      ->first()
-                    ;
-
-                    $session->write('Tenant.data', $tenant);
-                }
-            }else{
-                $newFileName = time() . "_" . rand(000000, 999999);
-                $newFileName = $newFileName . ".jpg";
-
-                $user_data = [
-                    'email' => $data['email'],
-                    'username' => $data['email'],
-                    'password' => $this->Users->generateRandomPassword(),
-                    'group_id' => 5,
-                    'firstname' => $data['first_name'],
-                    'lastname' => $data['last_name'],
-                    'photo' => $newFileName
-                ];
-
-                $user = $this->Users->newEntity();
-                $user = $this->Users->patchEntity($user,$user_data);
-                if( $new_user = $this->Users->save($user) ){
-
-                    //Upload profile pic                        
-                    $directory_name = WWW_ROOT . '/upload/users/' . $new_user->id . "/";  
-                    if(!is_dir($directory_name)){                                           
-                        mkdir($directory_name, 0755, true);
-                    }   
-                    $fbImage = $data['picture']['data']['url'];         
-                    $image   = file_get_contents($fbImage); // sets $image to the contents of the url
-                    file_put_contents($directory_name . $newFileName, $image);
-
-                    $tenant_data = [
-                        'user_id' => $new_user->id
-                    ];
-                    
-                    $tenant = $this->Tenants->newEntity();
-                    $tenant = $this->Tenants->patchEntity($tenant, $tenant_data);
-                    $new_tenant = $this->Tenants->save($tenant);
-
-                    $this->Auth->setUser($user);                            
-                    $session  = $this->request->session();        
-                    $session->write('User.data', $new_user);  
-                    $session->write('Tenant.data', $new_tenant);
-                    
-                 }
-            }        
-
-            $json_data['is_success'] = true;
-        }
-        
-        $this->viewBuilder()->layout('');        
-        echo json_encode($json_data);
-        exit;
-    }
-
-     /**
-     * Cron : Delete unverified accounts
-     * ID : CA-21
-     * lagin module then redirect to dashboard
-     */
-    public function cron_remove_unverified_accounts()
-    {
-        $this->Owners  = TableRegistry::get('Owners');
-        $this->Tenants = TableRegistry::get('Tenants');   
-
-        $users = $this->Users->find('all')
-            ->where(['Users.activation_code <>' => '', 'Users.is_active' => 0])
-        ;
-
-        $owners_ids = array();
-        $tenants_ids = array();
-        foreach( $users as $user ){
-            if( $user->group_id == 4 ){ //owner
-                $owners_ids[$user->id] = $user->id;
-            }elseif( $user->group_id == 5 ){ //tenant
-                $tenants_ids[$user->id] = $user->id;
-            }
-        }
-
-        $this->Owners->deleteAll(['Owners.user_id IN' => $owners_ids]);
-        $this->Tenants->deleteAll(['Tenants.user_id IN' => $tenants_ids]);
-        $this->Users->deleteAll(['Users.activation_code <>' => '', 'Users.is_active' => 0]);
-
-        echo 'Users Deleted!';
-        exit;
-    }
-
-    /**
-     * Frontend : Forgot Password
-     * ID : CA-22
-     * lagin module then redirect to dashboard
-     */
-    public function front_forgot_password()
-    {
-        // Change layout
-        $this->viewBuilder()->layout("template_login");    
-        
-        //if already logged-in, redirect
-        if($this->Auth->user()){
-            $this->redirect(array('action' => 'index'));      
-        }
-
-        if ($this->request->is('post')) {           
-            $data = $this->request->data;
-            if( $data['email'] != '' ){
-                $user = $this->Users->find()
-                    ->where(['Users.email' => $data['email']])
-                    ->first()
-                ;
-
-                if( $user ){
-                    if( $user->is_active == $this->Users->isActive() ){
-                        $reset_code = generateRandomString($user->id);
-                        $user->reset_code = $reset_code;
-                        $this->Users->save($user);
-
-                        //Send email
-                        $user_email = $data['email'];
-                        $smtp = new Email('nixstage_smtp');
-                        $smtp->from(['websystem@nixstage.com' => 'WebSystem'])
-                            ->template('request_forgot_password')
-                            ->emailFormat('html')
-                            ->to($user_email)                                                                                                     
-                            ->subject('Ranta : Reset Password')
-                            ->viewVars(['user' => $user, 'reset_code' => $reset_code])
-                            ->send();
-
-                        $this->Flash->success(__('We have sent you an email in resetting your password. Please check. Thank you.'));        
-                        return $this->redirect(['controller' => 'login']);
-                    }else{
-                        $this->Flash->error(__('Account disabled!'));        
-                    }
-                }else{
-                    $this->Flash->error(__('Email does not exists.'));    
-                }
-            }else{
-                $this->Flash->error(__('Please enter your registered email.'));
-            }
-
-        }
-
-        $this->set('page_title', 'Forgot Password');
-    }
-
-    /**
      * User method
-     * ID : CA-23
+     * ID : USR-17
      * @return void
      */
     public function user_dashboard()

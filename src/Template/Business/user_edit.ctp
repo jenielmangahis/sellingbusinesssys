@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1><i class="fa fa-plus"></i> <?= __('Add Business') ?></h1>
+    <h1><i class="fa fa-pencil"></i> <?= __('Edit Business') ?></h1>
     <ol class="breadcrumb">
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['action' => 'index'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Add') ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'user_dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['controller' => 'my_business', 'action' => 'index'],['escape' => false]) ?></li>
+        <li class="active"><?= __('Edit') ?></li>
     </ol>
 </section>
 
@@ -19,12 +19,6 @@
                     <?= $this->Form->create($busines,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
-                            echo "
-                            <div class='form-group'>
-                                <label for='user_id' class='col-sm-2 control-label'>" . __('User') . "</label>
-                                <div class='col-sm-6'>";
-                                 echo $this->Form->input('user_id', ['class' => 'form-control', 'id' => 'user_id', 'label' => false, 'options' => $users]);                 
-                            echo " </div></div>";    
                             echo "
                             <div class='form-group'>
                                 <label for='taking' class='col-sm-2 control-label'>" . __('Taking') . "</label>
@@ -57,7 +51,7 @@
                             <div class='form-group'>
                                 <label for='cover_photo' class='col-sm-2 control-label'>" . __('Cover Photo') . "</label>
                                 <div class='col-sm-6'>";
-                                echo $this->Form->input('cover_photo', ['type' => 'file', 'class' => 'form-control', 'id' => 'cover_photo', 'label' => false]);                
+                                echo $this->Form->input('upload_cover_photo', ['type' => 'file', 'class' => 'form-control', 'id' => 'upload_cover_photo', 'label' => false]);                
                             echo " </div></div>";    
                             
                             echo "
@@ -118,14 +112,14 @@
                             <div class='form-group'>
                                 <label for='authority_start_date' class='col-sm-2 control-label'>" . __('Authority Start Date') . "</label>
                                 <div class='col-sm-6'>";
-                                echo $this->Form->input('authority_start_date', ['type' => 'text', 'class' => 'default-datepicker form-control', 'id' => 'authority_start_date', 'label' => false]);                
+                                echo $this->Form->input('authority_start_date', ['type' => 'text', 'value' => date("Y-m-d",strtotime($busines->authority_start_date)), 'class' => 'default-datepicker form-control', 'id' => 'authority_start_date', 'label' => false]);                
                             echo " </div></div>";    
                             
                             echo "
                             <div class='form-group'>
                                 <label for='authority_end_date' class='col-sm-2 control-label'>" . __('Authority End Date') . "</label>
                                 <div class='col-sm-6'>";
-                                echo $this->Form->input('authority_end_date', ['type' => 'text', 'class' => 'default-datepicker form-control', 'id' => 'authority_end_date', 'label' => false]);                
+                                echo $this->Form->input('authority_end_date', ['type' => 'text', 'value' => date("Y-m-d",strtotime($busines->authority_end_date)), 'class' => 'default-datepicker form-control', 'id' => 'authority_end_date', 'label' => false]);                
                             echo " </div></div>";    
                             
                             echo "
@@ -266,8 +260,8 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">                            
                             <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                            <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                            <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
+                            <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                            <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['controller' => 'my_business', 'action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
                         </div>
                     </div>
                     <?= $this->Form->end() ?>

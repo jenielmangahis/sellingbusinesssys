@@ -84,18 +84,11 @@ Router::scope('/', function ($routes) {
     'id' => '[0-9]+')
     );    
     
-    Router::connect(
-    '/contact-us/',
-    array('controller' => 'Pages', 'action' => 'contact_us'),
-    array('pass' => array('id', 'slug'),
-    'id' => '[0-9]+')
-    ); 
-    Router::connect(
-    '/about-us/',
-    array('controller' => 'Pages', 'action' => 'frontview', 2),
-    array('pass' => array('id', 'slug'),
-    'id' => '[0-9]+')
-    );  
+    //Business
+    Router::connect('/my_business/',array('controller' => 'Business', 'action' => 'user_index')); 
+    Router::connect('/my_business/add',array('controller' => 'Business', 'action' => 'user_add')); 
+    Router::connect('/my_business/edit/:id',array('controller' => 'Business', 'action' => 'user_edit'),array('pass' => array('id'),'id' => '[0-9]+')); 
+    Router::connect('/my_business/delete/:id',array('controller' => 'Business', 'action' => 'user_delete'),array('pass' => array('id'),'id' => '[0-9]+')); 
 
 /**
  * Load all plugin routes.  See the Plugin documentation on

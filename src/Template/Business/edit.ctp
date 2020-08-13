@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1><?= __('Edit Business') ?></h1>
+    <h1><i class="fa fa-pencil"></i> <?= __('Edit Business') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
         <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['action' => 'index'],['escape' => false]) ?></li>
@@ -263,7 +263,7 @@
                                     
                     ?>
                     </fieldset>
-                    <div class="form-group" style="margin-top: 80px;">
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">                            
                             <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
                             <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>

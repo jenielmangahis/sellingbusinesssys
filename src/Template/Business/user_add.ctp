@@ -1,8 +1,8 @@
 <section class="content-header">
     <h1><i class="fa fa-plus"></i> <?= __('Add Business') ?></h1>
     <ol class="breadcrumb">
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['action' => 'index'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'user_dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-gear'></i>" . __('Business'), ['controller' => 'my_business', 'action' => 'index'],['escape' => false]) ?></li>
         <li class="active"><?= __('Add') ?></li>
     </ol>
 </section>
@@ -19,12 +19,6 @@
                     <?= $this->Form->create($busines,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
-                            echo "
-                            <div class='form-group'>
-                                <label for='user_id' class='col-sm-2 control-label'>" . __('User') . "</label>
-                                <div class='col-sm-6'>";
-                                 echo $this->Form->input('user_id', ['class' => 'form-control', 'id' => 'user_id', 'label' => false, 'options' => $users]);                 
-                            echo " </div></div>";    
                             echo "
                             <div class='form-group'>
                                 <label for='taking' class='col-sm-2 control-label'>" . __('Taking') . "</label>
@@ -267,7 +261,7 @@
                         <div class="col-sm-offset-2 col-sm-10">                            
                             <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
                             <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                            <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
+                            <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['controller' => 'my_business', 'action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
                         </div>
                     </div>
                     <?= $this->Form->end() ?>

@@ -25,6 +25,7 @@ class GroupsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
         $this->hasMany('Users', [
             'foreignKey' => 'group_id'
         ]);

@@ -87,11 +87,11 @@ class AppController extends Controller
                 
             ],
             'unauthorizedRedirect' => [
-                'controller' => 'Main',
-                'action' => 'index',
+                'controller' => 'Users',
+                'action' => 'loggedin',
                 'prefix' => false
             ],
-            'authError' => 'You must be logged in to view this page.',
+            'authError' => 'Cannot view page.',
             'flash' => [
                 'element' => 'error'
             ]

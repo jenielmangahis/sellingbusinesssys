@@ -12,7 +12,7 @@ class GroupsController extends AppController
 {
     /**
      * initialize method
-     *  ID : CA-01
+     *  ID : GRP-01
      * 
      */
     public function initialize()
@@ -21,13 +21,30 @@ class GroupsController extends AppController
         $nav_selected = ["system_settings"];
         $this->set('nav_selected', $nav_selected);
 
-        // Allow full access to this controller
-        //$this->Auth->allow();
+    }
+
+    /**
+     * beforeFilter method
+     *  ID : GRP-02
+     * 
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $session = $this->request->session();    
+        $this->user_data = $session->read('User.data');  
+        
+        if( isset($this->user_data) ){
+            if( $this->user_data->group_id == 1 ){ //Admin             
+                $this->Auth->allow();
+            }
+        }
     }
 
     /**
      * Index method
-     * ID : CA-02
+     * ID : GRP-03
      *
      * @return void
      */
@@ -48,7 +65,7 @@ class GroupsController extends AppController
 
     /**
      * View method
-     * ID : CA-03
+     * ID : GRP-04
      *
      * @param string|null $id Group id.
      * @return void
@@ -65,7 +82,7 @@ class GroupsController extends AppController
 
     /**
      * Add method
-     * ID : CA-04
+     * ID : GRP-05
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
@@ -92,7 +109,7 @@ class GroupsController extends AppController
 
     /**
      * Edit method
-     * ID : CA-05
+     * ID : GRP-06
      *
      * @param string|null $id Group id.
      * @return void Redirects on successful edit, renders view otherwise.
@@ -123,7 +140,7 @@ class GroupsController extends AppController
 
     /**
      * Delete method
-     * ID : CA-06
+     * ID : GRP-07
      *
      * @param string|null $id Group id.
      * @return void Redirects to index.

@@ -45,6 +45,7 @@ class BusinessTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
+        
         $this->belongsTo('BusinessTypes', [
             'foreignKey' => 'business_type_id',
             'joinType' => 'INNER'

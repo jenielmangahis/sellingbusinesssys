@@ -48,7 +48,7 @@
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
               <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
           </li> 
-          <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_business"] ?>">
+          <li id="groups_nav" title="Groups" class="<?= $nav_selected["business"] ?>">
               <?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Businesses") . "</span>",["controller" => "business", "action" => "index"],["escape" => false]) ?>
           </li> 
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_package"] ?>">
@@ -56,7 +56,7 @@
           </li> 
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_submission"] ?>">
               <?= $this->Html->link('<i class="fa fa-plus"></i><span>' . __("Submission") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
-          </li> -->
+          </li>
           <li id="system_settings_nav" title="System Settings" class="treeview <?= $nav_selected["system_settings"] ?>">
             <a href="#">
               <i class="fa fa-gear"></i> <span>System Settings</span>
@@ -78,7 +78,7 @@
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
-              <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+              <?= $this->Html->link('<i class="fa fa-dashboard"></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "user_dashboard"],["escape" => false]) ?>
           </li> 
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_profile"] ?>">
               <?= $this->Html->link('<i class="fa fa-user-circle"></i><span>' . __("Profile") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
@@ -89,8 +89,8 @@
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_saved_search"] ?>">
               <?= $this->Html->link('<i class="fa fa-bookmark"></i><span>' . __("Saved Search") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
           </li> 
-          <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_business"] ?>">
-              <?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("My Business") . "</span>",["controller" => "business", "action" => "index"],["escape" => false]) ?>
+          <li id="groups_nav" title="Groups" class="<?= $nav_selected["business"] ?>">
+              <?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("My Business") . "</span>",["controller" => "my_business", "action" => "index"],["escape" => false]) ?>
           </li> 
           <li id="groups_nav" title="Groups" class="<?= $nav_selected["my_package"] ?>">
               <?= $this->Html->link('<i class="fa fa-archive"></i><span>' . __("My package") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
