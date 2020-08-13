@@ -157,7 +157,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
 
-         $this->set('groups', $this->Users->Groups->find('list', array('fields' => array('name','id') ) ) );
+        $this->set('groups', $this->Users->Groups->find('list', array('fields' => array('name','id') ) ) );
     }
 
     /**

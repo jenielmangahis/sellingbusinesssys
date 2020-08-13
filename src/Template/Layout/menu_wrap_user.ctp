@@ -69,7 +69,6 @@
               <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Business Categories") . "</span>",["controller" => "business_categories", "action" => "index"],["escape" => false]) ?></li>
               <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Sales Authorities") . "</span>",["controller" => "sales_authorities", "action" => "index"],["escape" => false]) ?></li>
               <li><?= $this->Html->link('<i class="fa fa-cubes"></i><span>' . __("Company") . "</span>",["controller" => "company_details", "action" => "index"],["escape" => false]) ?></li>
-              <li><?= $this->Html->link('<i class="fa fa-industry"></i><span>' . __("Company") . "</span>",["controller" => "company_details", "action" => "index"],["escape" => false]) ?></li>
               <li><?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => "users", "action" => "index"],["escape" => false]) ?></li>            
               <li><?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Groups") . "</span>",["controller" => "groups", "action" => "index"],["escape" => false]) ?></li>
             </ul>
