@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * BusinessCategories Controller
@@ -12,7 +13,7 @@ class BusinessCategoriesController extends AppController
 {
     /**
      * initialize method
-     *  ID : PB-01
+     *  ID : BC-01
      * 
      */
     public function initialize()
@@ -20,15 +21,25 @@ class BusinessCategoriesController extends AppController
         parent::initialize();
         $nav_selected = ["system_settings"];
         $this->set('nav_selected', $nav_selected);
+    }
+
+    /**
+     * beforeFilter method
+     *  ID : BC-02
+     * 
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
 
         $session = $this->request->session();    
         $this->user_data = $session->read('User.data');  
         
         if( isset($this->user_data) ){
-            if( $this->user_data->group_id == 1 ){ //Admin
+            if( $this->user_data->group_id == 1 ){ //Admin             
                 $this->Auth->allow();
             }
-        } 
+        }
     }
 
     /**

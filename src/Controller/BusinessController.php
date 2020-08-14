@@ -24,17 +24,6 @@ class BusinessController extends AppController
         parent::initialize();
         $nav_selected = ["business"];
         $this->set('nav_selected', $nav_selected);
-
-        $session = $this->request->session();    
-        $this->user_data = $session->read('User.data');  
-        
-        if( isset($this->user_data) ){
-            if( $this->user_data->group_id == 1 ){ //Admin
-                $this->Auth->allow();
-            }else{
-                $this->Auth->allow(['user_index', 'user_add', 'user_edit', 'user_delete']);
-            }
-        } 
     }
 
     /**
@@ -50,9 +39,14 @@ class BusinessController extends AppController
         $this->user_data = $session->read('User.data');  
         
         if( isset($this->user_data) ){
-            if( $this->user_data->group_id == 1 ){ //Admin             
+            if( $this->user_data->group_id == 1 ){ //Admin
                 $this->Auth->allow();
+            }else{
+                $this->Auth->allow(['user_index', 'user_add', 'user_edit', 'user_delete']);
             }
+        }else{
+            $this->viewBuilder()->layout("Front/default"); 
+            $this->Auth->allow(['front_index']);
         }
     }
 
@@ -230,7 +224,7 @@ class BusinessController extends AppController
 
         $this->set(['search_query' => $search_query, 'search_field' => $search_field]);
         $this->set('business', $this->paginate($business));
-        $this->set('_serialize', ['agents']);
+        $this->set('_serialize', ['business']);
     }
 
     /**
@@ -333,5 +327,21 @@ class BusinessController extends AppController
         }
         
         return $this->redirect(['controller' => 'my_business', 'action' => 'index']);
+    }
+
+    /**
+     * Front Index method
+     *  ID : BUSS-12
+     *
+     * @return void
+     */
+    public function front_index()
+    {
+        $business = $this->Business->find('all')
+            ->contain(['Users', 'BusinessTypes', 'SalesAuthorities'])
+        ;   
+
+        $this->set('business', $this->paginate($business));
+        $this->set('_serialize', ['agents']);
     }
 }
