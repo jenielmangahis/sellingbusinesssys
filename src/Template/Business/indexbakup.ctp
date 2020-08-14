@@ -18,7 +18,7 @@
                   'type' => 'POST'
                 ]) ?>                         
                 <div class="input-group input-group-sm">
-                    <select class="bottom-marg10 form-control search-field" name="search_field">                                
+                    <select class="form-control search-field" name="search_field">                                
                         <option <?= $search_field == 'Business.business_listing_title' ? 'selected="selected"' : ''; ?> value="Business.business_listing_title"><?= __("Business Listing Title"); ?></option>
                     </select>
                     <input class="form-control search-value" name="search_query" type="text" value="<?= $search_query; ?>" placeholder="Enter query to search">
