@@ -11,15 +11,12 @@
     <!-- Main Row -->
     <div class="row">
         <section class="col-lg-12 ">
-            <div class="box clearfix " >
+            <div class="box " >
                 <div class="box-header">
 
                 </div>
                 <div class="box-body">
                     <?= $this->Form->create($busines,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) ?>
-                    
-
-                    <div class="f-left">
                     <fieldset>        
                         <?php
                             echo "
@@ -193,19 +190,8 @@
                                 <div class='col-sm-6'>";
                                 echo $this->Form->input('advertising_suburb', ['class' => 'form-control', 'id' => 'advertising_suburb', 'label' => false]);                
                             echo " </div></div>";    
-
-
-                            ?>
-
-
-                        </fieldset>
-                    </div>
-
-                    <div class="f-right">
-                        <fieldset>
-                            <?php 
-
-                                echo "
+                            
+                            echo "
                             <div class='form-group'>
                                 <label for='google_maps_address' class='col-sm-2 control-label'>" . __('Google Maps Address') . "</label>
                                 <div class='col-sm-6'>";
@@ -273,24 +259,17 @@
                                 <label for='other_feature' class='col-sm-2 control-label'>" . __('Other Feature') . "</label>
                                 <div class='col-sm-6'>";
                                 echo $this->Form->input('other_feature', ['class' => 'form-control', 'id' => 'other_feature', 'label' => false]);                
-                            echo " </div></div>";
-
-                             ?>                                       
-                        </fieldset>
-
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">                            
-                                <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                                <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
-                            </div>
+                            echo " </div></div>";    
+                                    
+                    ?>
+                    </fieldset>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">                            
+                            <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
+                            <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                            <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>                            
                         </div>
-                        
-                    </div>    
-
-                    
+                    </div>
                     <?= $this->Form->end() ?>
                 </div>
             </div>

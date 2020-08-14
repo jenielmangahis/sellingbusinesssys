@@ -646,6 +646,12 @@ td.actions {
     }
 }
 
+
+.f-left {
+  float: left; width: 50%;
+}
+.f-right { float: right; width: 50%; }
+
 /*ADDITIONAL CUSTOM STYLE*/
 
 .skin-blue .main-header .navbar {
