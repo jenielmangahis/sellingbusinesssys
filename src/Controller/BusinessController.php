@@ -353,11 +353,11 @@ class BusinessController extends AppController
      */
     public function front_view()
     {
-        $business = $this->Business->find('all')
-            ->contain(['Users', 'BusinessTypes', 'SalesAuthorities'])
-        ;   
+        // $business = $this->Business->find('all')
+        //     ->contain(['Users', 'BusinessTypes', 'SalesAuthorities'])
+        // ;   
 
-        $this->set('business', $this->paginate($business));
-        $this->set('_serialize', ['agents']);
+        // $this->set('business', $this->paginate($business));
+        // $this->set('_serialize', ['agents']);
     }
 }
