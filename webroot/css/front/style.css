@@ -747,3 +747,46 @@ figure[ranta-media-size] {
 li.active{
   background-color: #17a2b8;
 }
+
+
+
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/*LISTING PAGE LAYOUT*/
+.spacer-margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  min-height: 30px;
+}
+.cake-section-wrap { display:block; }
+
+.cake-element {
+  width: 100%;
+  display: block;
+}
+.cake-element-container {
+  max-width: 1170px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.listing-container {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+
+
+
+
+
