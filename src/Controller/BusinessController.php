@@ -344,4 +344,20 @@ class BusinessController extends AppController
         $this->set('business', $this->paginate($business));
         $this->set('_serialize', ['agents']);
     }
+
+    /**
+     * Front Index method
+     *  ID : BUSS-12
+     *
+     * @return void
+     */
+    public function front_view()
+    {
+        $business = $this->Business->find('all')
+            ->contain(['Users', 'BusinessTypes', 'SalesAuthorities'])
+        ;   
+
+        $this->set('business', $this->paginate($business));
+        $this->set('_serialize', ['agents']);
+    }
 }

@@ -90,6 +90,7 @@ Router::scope('/', function ($routes) {
     Router::connect('/my_business/edit/:id',array('controller' => 'Business', 'action' => 'user_edit'),array('pass' => array('id'),'id' => '[0-9]+')); 
     Router::connect('/my_business/delete/:id',array('controller' => 'Business', 'action' => 'user_delete'),array('pass' => array('id'),'id' => '[0-9]+')); 
     Router::connect('/business_list/',array('controller' => 'Business', 'action' => 'front_index')); 
+    Router::connect('/business_view/',array('controller' => 'Business', 'action' => 'front_view')); 
 
 /**
  * Load all plugin routes.  See the Plugin documentation on
